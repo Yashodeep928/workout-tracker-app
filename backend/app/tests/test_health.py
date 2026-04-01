@@ -1,14 +1,14 @@
-from fastapi.testclient import TestClient
-from app.main import app
-
-client = TestClient(app)
-
-def test_root():
+# Test root endpoint
+def test_root(client):
     response = client.get("/")
+
     assert response.status_code == 200
     assert response.json() == {"message": "Workout Tracker API is running"}
 
-def test_health():
+
+# Test health endpoint
+def test_health(client):
     response = client.get("/health/")
+
     assert response.status_code == 200
     assert response.json() == {"status": "ok"}
